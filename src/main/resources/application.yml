@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: TestRSS
+  datasource:
+    url: jdbc:mysql://localhost:13306/jpa_test
+    password: root
+    username: root
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
