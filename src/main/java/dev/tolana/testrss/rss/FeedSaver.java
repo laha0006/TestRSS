@@ -1,5 +1,6 @@
 package dev.tolana.testrss.rss;
 
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,9 @@ public class FeedSaver {
         } else {
             timeOfNewestEntry = 0;
         }
+
+//        feed.getEntries().forEach(e -> System.out.println(e.getEnclosures()));
+        feed.getEntries().forEach(e -> System.out.println(e));
 
         feed.getEntries().stream()
                 .takeWhile(entry -> entry.getPublishedDate().getTime() > timeOfNewestEntry)

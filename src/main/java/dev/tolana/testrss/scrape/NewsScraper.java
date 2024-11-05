@@ -16,6 +16,12 @@ public class NewsScraper {
     private final String headerFieldValue = "School Projekt news scraping. contact: laha0006@stud.kea.dk";
 
     public String scrape(String url) {
+        System.out.println("scraping url: " + url);
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
@@ -26,8 +32,7 @@ public class NewsScraper {
 
         ResponseEntity<String> res = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
 
-        System.out.println(res.getBody());
-        return "something";
+        return res.getBody();
 
     }
 }

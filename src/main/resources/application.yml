@@ -13,3 +13,7 @@ spring:
       ddl-auto: update
     show-sql: true
 
+app:
+  openai:
+    url: https://api.openai.com/v1/chat/completions
+    API_KEY: ${API_KEY}

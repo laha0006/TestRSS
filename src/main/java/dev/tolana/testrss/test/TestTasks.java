@@ -1,7 +1,10 @@
 package dev.tolana.testrss.test;
 
 import com.rometools.rome.feed.synd.SyndFeed;
+import dev.tolana.testrss.openai.ArticleSummarizer;
+import dev.tolana.testrss.rss.FeedSaver;
 import dev.tolana.testrss.rss.RSSReader;
+import dev.tolana.testrss.scrape.RawArticleSaver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,13 +16,16 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class TestTasks {
 
-    private final RSSReader reader;
+    private final FeedSaver feedSaver;
+    private final RawArticleSaver rawArticleSaver;
+    private final ArticleSummarizer summarizer;
 
-//    @Scheduled(fixedDelay = 1, timeUnit = TimeUnit.MINUTES)
+//    @Scheduled(fixedDelay = 15, timeUnit = TimeUnit.MINUTES)
     public void testTask() {
         System.out.println("TASK START ############");
-        SyndFeed syndFeed = reader.readRSS("https://www.dr.dk/nyheder/service/feeds/senestenyt");
-        System.out.println(syndFeed.getEntries().getFirst().getPublishedDate().getTime());
+        feedSaver.saveAll();
+        rawArticleSaver.saveAll();
+        summarizer.process();
         System.out.println("TASK END ############");
     }
 
