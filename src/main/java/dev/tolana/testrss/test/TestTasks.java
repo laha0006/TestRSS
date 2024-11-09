@@ -20,7 +20,7 @@ public class TestTasks {
     private final RawArticleSaver rawArticleSaver;
     private final ArticleSummarizer summarizer;
 
-//    @Scheduled(fixedDelay = 15, timeUnit = TimeUnit.MINUTES)
+    @Scheduled(fixedDelay = 15, timeUnit = TimeUnit.MINUTES)
     public void testTask() {
         System.out.println("TASK START ############");
         feedSaver.saveAll();

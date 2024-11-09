@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface RawArticleRepository extends JpaRepository<RawArticle, Long> {
     Optional<RawArticle> findByTitle(String title);
 
-    List<RawArticle> findAllByOrderByTimestampDesc();
+    List<RawArticle> findByTimestampGreaterThanEqualOrderByTimestampDesc(long time);
 }

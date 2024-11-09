@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ProcessedArticleRepository extends JpaRepository<ProcessedArticle, Long> {
-    List<ProcessedArticle> findAllByOrderByTimestampDesc();
+    List<ProcessedArticle> findByTimestampGreaterThanEqualOrderByTimestampDesc(long time);
 }

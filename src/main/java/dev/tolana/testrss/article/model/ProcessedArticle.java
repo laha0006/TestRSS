@@ -23,6 +23,7 @@ public class ProcessedArticle {
     private Source source;
     private String url;
     private long timestamp;
+    @Column(length = 1024)
     private String bias;
 
     @OneToMany(mappedBy = "article",cascade = CascadeType.ALL, fetch = FetchType.EAGER)

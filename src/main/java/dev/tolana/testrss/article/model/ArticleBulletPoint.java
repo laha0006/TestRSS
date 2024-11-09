@@ -15,7 +15,7 @@ public class ArticleBulletPoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @Column(length = 1024)
     private String bulletPoint;
 
     @ManyToOne()

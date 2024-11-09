@@ -7,12 +7,9 @@ import dev.tolana.testrss.openai.dto.JsonOpenAiResponse;
 import dev.tolana.testrss.rss.Source;
 import dev.tolana.testrss.scrape.RawArticle;
 import dev.tolana.testrss.scrape.RawArticleRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,7 +25,10 @@ public class ArticleSummarizer {
 
     public void process() {
         System.out.println("AI PROCESS...");
-        List<ProcessedArticle> processedArticles = processedArticleRepository.findAllByOrderByTimestampDesc();
+        long unixTimeNow = System.currentTimeMillis();
+        long DAY_IN_SECONDS = 86_400_000L;
+        long unixTimeOneDayAgo = unixTimeNow - DAY_IN_SECONDS;
+        List<ProcessedArticle> processedArticles = processedArticleRepository.findByTimestampGreaterThanEqualOrderByTimestampDesc(unixTimeOneDayAgo);
 
         long newestSummarized;
         if (!processedArticles.isEmpty()) {
@@ -37,7 +37,7 @@ public class ArticleSummarizer {
             newestSummarized = 0;
         }
 
-        List<RawArticle> rawArticles = rawArticleRepository.findAllByOrderByTimestampDesc();
+        List<RawArticle> rawArticles = rawArticleRepository.findByTimestampGreaterThanEqualOrderByTimestampDesc(unixTimeOneDayAgo);
 
         if (rawArticles.isEmpty()) return;
 

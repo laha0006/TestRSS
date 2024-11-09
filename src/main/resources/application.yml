@@ -1,17 +1,20 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: TestRSS
   datasource:
-    url: jdbc:mysql://localhost:13306/jpa_test
-    password: root
+    url: jdbc:mysql://db:3306/news?autoReconnect=true
+    password: ${DATASOURCE_PWD}
     username: root
   jpa:
-    properties:
-      hibernate:
-        format_sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
     hibernate:
       ddl-auto: update
-    show-sql: true
+#    show-sql: true
 
 app:
   openai:

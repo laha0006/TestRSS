@@ -6,7 +6,6 @@ import dev.tolana.testrss.rss.Source;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +50,10 @@ public class RawArticleSaver {
     }
 
     public void saveAll() {
-        List<FeedItem> feedItems = feedItemRepo.findAll();
+        long unixTimeNow = System.currentTimeMillis();
+        long DAY_IN_SECONDS = 86_400_000L;
+        long unixTimeOneDayAgo = unixTimeNow - DAY_IN_SECONDS;
+        List<FeedItem> feedItems = feedItemRepo.findByPubDateGreaterThanEqualOrderByPubDateDesc(unixTimeOneDayAgo);
         if (feedItems.isEmpty()) return;
         feedItems.forEach(this::save);
     }

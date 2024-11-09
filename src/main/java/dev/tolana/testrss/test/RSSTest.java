@@ -1,6 +1,5 @@
 package dev.tolana.testrss.test;
 
-import com.rometools.rome.feed.synd.SyndFeed;
 import dev.tolana.testrss.article.ProcessedArticleRepository;
 import dev.tolana.testrss.article.model.ProcessedArticle;
 import dev.tolana.testrss.openai.ArticleSummarizer;
@@ -14,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Component
@@ -33,7 +32,16 @@ public class RSSTest implements CommandLineRunner {
     @Override
     public void run(String... args) {
         System.out.println("cmd runner ran.");
-        sandbox.test();
+//        long unixTimeNow = System.currentTimeMillis();
+//        long DAY_IN_SECONDS = 86_400_000L;
+//        long unixTimeOneDayAgo = unixTimeNow - DAY_IN_SECONDS;
+//        System.out.println("Unix now: " + unixTimeNow);
+//        System.out.println("one day: " + unixTimeOneDayAgo);
+//        List<ProcessedArticle> processedArticles = processedArticleRepository.findByTimestampGreaterThanEqual(unixTimeOneDayAgo);
+//        System.out.println(processedArticles.size());
+//        System.out.println("timestamp first:"+ processedArticles.get(0).getTimestamp());
+//        System.out.println("timestamp last:" + processedArticles.get(processedArticles.size() - 1).getTimestamp());
+////        sandbox.test();
 //        summarizer.process();
 //        Optional<ProcessedArticle> processedArticleOptional = processedArticleRepository.findById(6L);
 //        if (processedArticleOptional.isPresent()) {

@@ -33,8 +33,7 @@ public class FeedSaver {
             timeOfNewestEntry = 0;
         }
 
-//        feed.getEntries().forEach(e -> System.out.println(e.getEnclosures()));
-        feed.getEntries().forEach(e -> System.out.println(e));
+//        feed.getEntries().forEach(e -> System.out.println(e.getEnclosures()))
 
         feed.getEntries().stream()
                 .takeWhile(entry -> entry.getPublishedDate().getTime() > timeOfNewestEntry)
