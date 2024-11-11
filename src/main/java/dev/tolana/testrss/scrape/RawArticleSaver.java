@@ -28,6 +28,7 @@ public class RawArticleSaver {
         String url = feedItem.getLink();
         String title = feedItem.getTitle();
         Source source = feedItem.getSource();
+        String link = feedItem.getLink();
         long pubDate = feedItem.getPubDate();
 
         if (exists(title)) return;
@@ -44,6 +45,7 @@ public class RawArticleSaver {
                 .content(content)
                 .source(source)
                 .timestamp(pubDate)
+                .link(link)
                 .build();
         rawArticleRepo.save(rawArticle);
         System.out.println("saved raw article");

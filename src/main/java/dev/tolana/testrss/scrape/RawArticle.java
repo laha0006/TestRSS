@@ -21,6 +21,7 @@ public class RawArticle {
     @Column(length = 60000)
     private String content;
     private Source source;
+    private String link;
     private long timestamp;
 
 

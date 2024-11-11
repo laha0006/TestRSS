@@ -65,7 +65,7 @@ public class OpenAiService {
     public JsonOpenAiResponse summarize(String article) {
         List<OpenAiMessage> msgs = new ArrayList<>(List.of(
                 new OpenAiMessage("system",
-                        "You summarize an article into short and concise bullet point format with no more than 8 points preferably less, with one short line of analyzed political bias, all in danish"),
+                        "You summarize an article into short and concise bullet points with no more than 8 bullet points, with one short line of analyzed political bias, all in danish"),
                 new OpenAiMessage("user", article)
         ));
 

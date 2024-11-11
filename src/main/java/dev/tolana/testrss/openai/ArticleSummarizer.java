@@ -46,7 +46,7 @@ public class ArticleSummarizer {
                 .map(ra -> {
                     String title = ra.getTitle();
                     Source source = ra.getSource();
-                    String url = source.getUrl();
+                    String url = ra.getLink();
                     long timestamp = ra.getTimestamp();
                     JsonOpenAiResponse data = openAiService.summarize(ra.getContent());
 //                    JsonOpenAiResponse data = new JsonOpenAiResponse(
